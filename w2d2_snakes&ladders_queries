@@ -1,0 +1,62 @@
+QUERY 1
+```
+#board
+def win_tile
+  @state.size - 1;  <--?line 22: What's the end semicolon do/indicate?
+end
+```
+
+QUERY 2
+?Correction (cut-and-paste error): 
+```
+#turn_log_spec  
+def test_has_roll
+  assert_equal(7, @turn_log1.roll)  <--CORRECTED
+end
+
+```
+
+QUERY 3
+?In #turn_log line 12, could ```result = :space``` be 
+```result = :space if @modifier == 0```? (Tested and it works; just wondered if there was a particular reason for effectively setting :space as the default result, when == 0, > 0 and < 0 between them cover all possibilities?)
+
+QUERY 4
+?In #turn_log, does/should/could parameter :modifier reference #game? 
+
+QUERY 5
+```
+#game
+def is_won?
+  for player in @players
+    @winner = player if player.position >= @board.win_tile
+  end
+  return !@winner.nil?
+end
+```
+?Not sure why >= rather than == given that move_player method is set up so that the final tile is the only possible last position? (Guess query is really whether this is deliberate?) 
+
+QUERY 6
+#game_spec, test_adds_turn_to_log <-- ?not sure how syntax @game.log accesses turn log array (know it's something to do with what attr_reader :log does, but ...)?
+
+QUERY 7
+#game, next_turn method includes line ```modifier = move_player(spaces)``` <-- ?this actually moves the player (rather than just returning the modifier)? 
+
+QUERY 8
+#snakes_and_ladders.md (i.e. the class notes), line 846:
+"... we will run a series of tests to see if the game state is what we expect it to be. This is more of an "integration test" than a unit test."
+<-- ?terms 'integration test', 'unit test'?
+
+QUERY 9
+```
+#viewer
+class Viewer
+  def start(player_name)
+    puts
+    puts "#{player_name} roll!"  <-- ?Include instruction to say how (enter)?
+    gets.chomp
+  end
+end
+
+QUERY 10
+?How would you go about planning/initial design for this program? 
+
